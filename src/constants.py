@@ -10,7 +10,8 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 CHANNEL_ID = 1405002638147321906 # bot-testing
 GUILD_ID = 1403182852262072431 # toolugg's server
 COGS_LIST = [
-    'CreateDndPoll'
+    'create_dnd_poll',
+    'message_edit'
 ]
 
 DEFAULT_POLL_QUESTION = "What days work for you?"

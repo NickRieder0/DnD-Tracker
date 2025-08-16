@@ -1,5 +1,5 @@
 ''' cog file for /create_dnd_poll '''
-#pylint:disable=line-too-long,missing-function-docstring,unused-argument
+#pylint:disable=line-too-long
 #pyright:reportInvalidTypeForm=false
 from datetime import datetime, timedelta
 import discord
@@ -12,11 +12,12 @@ from constants import (DEFAULT_POLL_DURATION,
                        GUILD_ID)
 
 class CreateDndPoll(commands.Cog):
+    ''' create poll to schedule future DnD sessions '''
 
-    def __init__(self, bot):
+    def __init__(self, bot: discord.Bot):
         self.bot = bot
 
-    @discord.slash_command(description="Create a poll to schedule future DnD sessions.", guild_ids=[GUILD_ID])
+    @discord.slash_command(description="Create a poll to schedule future DnD sessions", guild_ids=[GUILD_ID])
     async def create_dnd_poll(self, ctx: discord.ApplicationContext,
                                 question: discord.Option(str,
                                                         "question for the poll",
@@ -27,6 +28,7 @@ class CreateDndPoll(commands.Cog):
                                 start_date: discord.Option(str,
                                                         "valid formats: 1-22 , 1/22 , 1-22-2000 , 1/22/2000 (if no year is given, the current year is used)",
                                                         required=False)):
+        ''' Create a poll to schedule future DnD sessions '''
 
         def parse_start_date() -> datetime:
             ''' if user input start date, attempt to parse into datetime object '''
@@ -78,5 +80,6 @@ class CreateDndPoll(commands.Cog):
         poll = create_poll(answers, question)
         await ctx.respond(poll=poll)
 
-def setup(bot):
+def setup(bot: discord.Bot):
+    ''' connect cog to bot '''
     bot.add_cog(CreateDndPoll(bot))
