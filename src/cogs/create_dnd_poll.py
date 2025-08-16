@@ -1,5 +1,5 @@
 ''' cog file for /create_dnd_poll '''
-#pylint:disable=line-too-long
+#pylint:disable=line-too-long, no-member
 #pyright:reportInvalidTypeForm=false
 from datetime import datetime, timedelta
 import discord
